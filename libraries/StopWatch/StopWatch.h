@@ -2,7 +2,7 @@
 #define StopWatch_h
 // 
 //    FILE: StopWatch.h
-//  AUTHOR: Rob Tillaart
+//  AUTHOR: Rob Tillaart (with edit by Liam Fogerty)
 // PURPOSE: Simple StopWatch library for Arduino
 // HISTORY: See StopWatch.cpp
 //     URL: http://playground.arduino.cc/Code/StopWatchClass
@@ -10,7 +10,7 @@
 // Released to the public domain
 //
 
-#define STOPWATCH_LIB_VERSION "0.1.03"
+#define STOPWATCH_LIB_VERSION "0.1.04"
 
 #if ARDUINO >= 100
     #include "Arduino.h"
@@ -22,7 +22,7 @@ class StopWatch
 {
 public:
     enum State { RESET, RUNNING, STOPPED };
-    enum Resolution { MILLIS, MICROS, SECONDS };
+    enum Resolution { MILLIS, MICROS, SECONDS, MINUTES };
     StopWatch(enum Resolution res = MILLIS);
     void start();
     void stop(); 
@@ -40,6 +40,7 @@ private:
     unsigned long _stoptime;
     unsigned long (*_gettime)(void);
     static unsigned long seconds() { return millis()/1000; };
+    static unsigned long minutes() { return (millis()/1000)/60; };
 };
 
 #endif
