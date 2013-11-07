@@ -1,7 +1,7 @@
 // 
 //    FILE: StopWatch.cpp
-//  AUTHOR: Rob Tillaart
-// VERSION: 0.1.03
+//  AUTHOR: Rob Tillaart (with edit by Liam Fogerty)
+// VERSION: 0.1.04
 // PURPOSE: Simple StopWatch library for Arduino
 //
 // The library is based upon millis() and therefore
@@ -12,7 +12,8 @@
 // 0.1.01 - 2011-01-04 Added better state
 // 0.1.02 - 2011-06-15 Added state() + #defines + lib version
 // 0.1.03 - 2012-01-22 Added several improvements
-//             By mromani & Rob Tillaart
+// 0.1.04 - 2013-11-07 Added "Minutes" and keywords
+//             By mromani & Rob Tillaart (with edit by Liam Fogerty)
 // 
 // Released to the public domain
 //
@@ -31,6 +32,9 @@ StopWatch::StopWatch(enum Resolution res)
             break;
         case SECONDS:
             _gettime = seconds;
+            break;
+        case MINUTES:
+            _gettime = minutes;
             break;
         default:  
             _gettime = millis;
